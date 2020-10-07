@@ -8,7 +8,7 @@ using namespace std;
 int main() {
 	setlocale(LC_ALL, "ru");
 
-	//AC power - переменный ток
+	//AC power
 	SYSTEM_POWER_STATUS status;
 	while (1) {
 		if (!GetSystemPowerStatus(&status)) {
@@ -16,48 +16,48 @@ int main() {
 		}
 		else {
 
-			cout << "Режим питания:";
+			cout << "Power mode:";
 			int powerMode = status.ACLineStatus;
 			if (powerMode == 0) {
-				cout << "питание от аккумулятора" << endl;
+				cout << "battery powered" << endl;
 			}
 			else if (powerMode == 1) {
-				cout << "питание от сети" << endl;
+				cout << "AC power" << endl;
 			}
 			else {
 				cout << "Unknown status" << endl;
 			}
 			////////////////////////////////////
-			cout << "Уровень заряда батареи(%):";
+			cout << "Battery level(%):";
 			int life = status.BatteryLifePercent;
 			cout << life << "%" << endl;
 			////////////////////////////////////
-			cout << "Текущий режим энергосбережения:";
+			cout << "Current power saving mode:";
 			int energyStatus = status.SystemStatusFlag;
 			if (energyStatus == 0) {
-				cout << "Режим энергосбережения выключен." << endl;
+				cout << "Power saving mode is disabled." << endl;
 			}
 			else if (energyStatus == 1) {
-				cout << "Экономия заряда батареи включена. По возможности экономьте энергию." << endl;
+				cout << "Battery saving is enabled. Save energy whenever possible." << endl;
 			}
 			////////////////////////////////////
-			//вывести время работы акк - ро(без подключения к сети питания(без зарядки)
-			cout << "Время работы аккумулятора:";
+			
+			cout << "Battery life:";
 			unsigned long int batteryLifeSeconds = status.BatteryLifeTime;
 			if (batteryLifeSeconds) {
-				cout << "Аккумулятор будет работать - " << batteryLifeSeconds / 3600 <<
+				cout << "The battery will work - " << batteryLifeSeconds / 3600 <<
 					"h:" << batteryLifeSeconds % 3600 / 60 << "min:" << batteryLifeSeconds % 3600 % 60 <<
 					"sec" << endl;
 			}
 			else {
-				cout << "Количество секунд неизвестно || устройство подключено к источнику питания" << endl;
+				cout << "The number of seconds is unknown || the device is connected to a power source" << endl;
 			}
 
 		}
 		Sleep(777);
 		Sleep(777);
 
-		cout << "Выберите режим:\n1-спящий режим\n2-режим гибернации\n3-выход\n";
+		cout << "Choose mode:\n1-sleep mode\n2-hibernation mode\n3-exit\n";
 		char a;
 		a = getchar();
 		if (a == '1') {
