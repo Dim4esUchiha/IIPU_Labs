@@ -60,18 +60,16 @@ int main() {
 		cout << "Choose mode:\n1-sleep mode\n2-hibernation mode\n3-exit\n";
 		char a;
 		a = getchar();
-		if (a == '1') {
+		if (a == '2') {
 			SetSuspendState(TRUE,FALSE,FALSE);
 		}
-		else if (a == '2') {
+		else if (a == '1') {
 			SetSuspendState(FALSE, FALSE, FALSE);
 		}
 		else if (a == '3') break;
 		Sleep(777);
-		Sleep(777);
-		Sleep(777);
-		Sleep(777);
-		Sleep(777);
+		
+		
 		system("cls");
 	}
 	return 0;
